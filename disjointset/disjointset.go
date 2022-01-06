@@ -35,7 +35,7 @@ func (set MyDisjointSet) UnionSet(number_key int, number_key2 int) int {
 func NewDisjointSet() DisjointSet {
 	// Insert all the elements in the set
 	set := make(MyDisjointSet)
-	for i := 0; i < 1000*1000; i++ {
+	for i := -1000 * 1000; i < 1000*1000; i++ {
 		set[i] = i
 	}
 	return set
