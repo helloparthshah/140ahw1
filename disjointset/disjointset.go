@@ -12,8 +12,20 @@ type DisjointSet interface {
 }
 
 // TODO: implement a type that satisfies the DisjointSet interface.
+type MyDisjointSet struct {
+}
+type mySet map[int]int
+
+var set mySet
+
+func FindSet(number_key int) int {
+	if number_key == set[number_key] {
+		return number_key
+	}
+	return FindSet(set[number_key])
+}
 
 // NewDisjointSet creates a struct of a type that satisfies the DisjointSet interface.
 func NewDisjointSet() DisjointSet {
-	panic("TODO: implement this!")
+	return set
 }
