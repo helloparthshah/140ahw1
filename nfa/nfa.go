@@ -22,6 +22,18 @@ func Reachable(
 ) bool {
 	// TODO: Write the Reachable function,
 	// return true if the nfa accepts the input and can reach the final state with that input,
+	if len(input) == 0 || input == nil {
+		if start == final {
+			return true
+		}
+		return false
+	}
+	next := transitions(start, input[0])
+	for _, st := range next {
+		if Reachable(transitions, st, final, input[1:]) {
+			return true
+		}
+	}
 	// return false otherwise
-	panic("TODO: implement this!")
+	return false
 }
