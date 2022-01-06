@@ -33,6 +33,5 @@ func (set MyDisjointSet) UnionSet(number_key int, number_key2 int) int {
 
 // NewDisjointSet creates a struct of a type that satisfies the DisjointSet interface.
 func NewDisjointSet() DisjointSet {
-	set := MyDisjointSet{}
-	return set
+	return MyDisjointSet{}
 }
