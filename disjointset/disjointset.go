@@ -12,20 +12,27 @@ type DisjointSet interface {
 }
 
 // TODO: implement a type that satisfies the DisjointSet interface.
-type MyDisjointSet struct {
-}
-type mySet map[int]int
+type MyDisjointSet map[int]int
 
-var set mySet
-
-func FindSet(number_key int) int {
+func (set MyDisjointSet) FindSet(number_key int) int {
 	if number_key == set[number_key] {
 		return number_key
 	}
-	return FindSet(set[number_key])
+	set[number_key] = set.FindSet(set[number_key])
+	return set[number_key]
+}
+
+func (set MyDisjointSet) UnionSet(number_key int, number_key2 int) int {
+	number_key = set.FindSet(number_key)
+	number_key2 = set.FindSet(number_key2)
+	if number_key != number_key2 {
+		set[number_key2] = number_key
+	}
+	return number_key
 }
 
 // NewDisjointSet creates a struct of a type that satisfies the DisjointSet interface.
 func NewDisjointSet() DisjointSet {
+	set := MyDisjointSet{}
 	return set
 }
