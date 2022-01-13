@@ -25,6 +25,13 @@ func TestAreAdjacent(t *testing.T) {
 		{[]int{1, 2, 1}, 1, 4, false},
 		{[]int{1, 2, 1, 4}, 1, 4, true},
 		// TODO add more tests for 100% test coverage
+		{[]int{0, 0, 0, 0, 0, 0, 0}, 1, 2, false},
+		{[]int{0, 0, 0, 0, 0, 0, 0}, 0, 1, false},
+		{[]int{0, 0, 0, 0, 0, 0, 0}, 0, 0, true},
+		{[]int{-1, 2, 4, -3}, 1, 2, false},
+		{[]int{-1, 2, 4, -3}, -1, 2, true},
+		{[]int{1, 2, 1, 4, 4, 7, 9, 3, 2, 5, 7, 9, 9, 4, 2, 2}, 4, 7, true},
+		{[]int{1, 2, 1, 4, 6, 7, 9, 3, 2, 5, 7, 9, 9, 4, 2, 2}, 4, 5, false},
 	}
 	for i, test := range tests {
 		func() {
