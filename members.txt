@@ -1,4 +1,4 @@
-Parth Shah      (SID: )             pnshah@ucdavis.edu
-Keya Shah       (SID: 916881106)    keyshah@ucdavis.edu
-Mehita          (SID: ) 
-Keshav Agrawal  (SID: 917332502)    kvagrawal@ucdavis.edu
+Parth Shah pnshah@ucdavis.edu
+Keya Shah keyshah@ucdavis.edu
+Mehita
+Keshav Agrawal kvagrawal@ucdavis.edu
