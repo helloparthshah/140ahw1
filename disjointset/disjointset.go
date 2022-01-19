@@ -12,23 +12,24 @@ type DisjointSet interface {
 }
 
 // TODO: implement a type that satisfies the DisjointSet interface.
-type MyDisjointSet map[int]int
-
-var rank = make(map[int]int)
+type MyDisjointSet struct {
+	set  map[int]int
+	rank map[int]int
+}
 
 func (set MyDisjointSet) FindSet(number_key int) int {
-	val, ok := set[number_key]
+	val, ok := set.set[number_key]
 	if !ok {
-		set[number_key] = number_key
-		rank[number_key] = 0
+		set.set[number_key] = number_key
+		set.rank[number_key] = 0
 		return number_key
 	}
 	if number_key == val {
 		return number_key
 	}
 	// Path compression heuristic
-	set[number_key] = set.FindSet(set[number_key])
-	return set[number_key]
+	set.set[number_key] = set.FindSet(set.set[number_key])
+	return set.set[number_key]
 }
 
 func (set MyDisjointSet) UnionSet(a int, b int) int {
@@ -36,27 +37,23 @@ func (set MyDisjointSet) UnionSet(a int, b int) int {
 	a = set.FindSet(a)
 	b = set.FindSet(b)
 	if a != b {
-		if rank[a] < rank[b] {
+		if set.rank[a] < set.rank[b] {
 			temp := a
 			a = b
 			b = temp
 		}
-		set[b] = a
-		if rank[a] == rank[b] {
-			rank[a]++
+		set.set[b] = a
+		if set.rank[a] == set.rank[b] {
+			set.rank[a]++
 		}
 	}
 	return a
-	/* number_key = set.FindSet(number_key)
-	number_key2 = set.FindSet(number_key2)
-	if number_key != number_key2 {
-		set[number_key2] = number_key
-	}
-	return number_key */
 }
 
 // NewDisjointSet creates a struct of a type that satisfies the DisjointSet interface.
 func NewDisjointSet() DisjointSet {
-	set := make(MyDisjointSet)
+	var set MyDisjointSet
+	set.set = make(map[int]int)
+	set.rank = make(map[int]int)
 	return set
 }
